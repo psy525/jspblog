@@ -59,6 +59,7 @@ function start(){
     const properties = [props.left, props.opacity0, props.opacity0, `${props.transition1} ${props.bottom}`, `${props.transition2} ${props.bottom}`, props.opacity0, `${props.opacity1} ${props.trnsDelay} ${props.zIndex}`]
   
     transition(elms, properties)
+	console.log("버튼 눌러짐")
   }
 
   document.getElementById("login").onclick = function (){

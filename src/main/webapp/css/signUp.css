@@ -20,9 +20,14 @@
   background: #f3f3f3; 
 }
 
-/* ===========================
-    Choose Form
-============================ */
+.login-form--register{
+  position: absolute;
+  margin-top:150px;
+  width: inherit;
+  height: 400px;
+  text-align: center;
+}
+
 
 .form-container{
   position: absolute; 
@@ -39,71 +44,42 @@
   background: #f3f3f3; 
 } 
 
-.form-container__arrow{
+.choose-form{
   position: absolute;
-  margin: auto;
-  top: 20px;
+  margin: initial;
+  top: initial;
   right: initial;
   bottom: initial;
-  left: -120px;
-  width: 10px;
-  height: 10px;
-  color: #8dabfb;
-  z-index: 10; 
-  opacity: 1;
-  -webkit-transition: left 2s;
-  -moz-transition: left 2s;
-  -o-transition: left 2s;
-  transition: left 2s;
-  cursor: pointer;
-}
-
-.login-form--register{
-  position: absolute;
+  left: initial;
   width: inherit;
-  height: 400px;
-  text-align: center;
+  height: inherit;
+  z-index: 5;
 }
 
+.buttons__signup--login-form{
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+  top: -66px; 
+}
 
-.buttons__signup{
+.login-form{
   position: absolute;
-  margin: auto; 
-  top: -40px;
+  margin: auto;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 7px 0;
-  border: none; 
-  border-radius: 10px;
-  width: 200px;
-  height: 30px;
-  display: block;
-  outline: none;
+  width: inherit;
+  height: 400px;
   text-align: center;
-  text-transform: uppercase;
-  text-decoration: none;
-  letter-spacing: 0.1em;
-  font-size: 12px;
-  font-weight: 500;
-  color: #fff;
-  background: #4f73d9;
-  box-shadow: 0 15px 30px rgba(79, 115, 217, .36); 
-  -webkit-transition:  bottom 2s;
-  -moz-transition:  bottom 2s;
-  -o-transition:  bottom 2s;
-  transition: bottom 2s;
-  cursor: pointer;
-} 
-
-.buttons__signup:hover{
-  -webkit-transition: .3s linear;
-  -moz-transition: .3s linear;
-  -o-transition: .3s linear;
-  transition: .3s linear;
-  box-shadow: 0 0 0 rgba(233, 30, 99, 0);
-} 
-
+  opacity: 0;
+  -webkit-transition: opacity 2s;
+  -moz-transition: opacity 2s;
+  -o-transition: opacity 2s;
+  transition: opacity 2s; 
+}
 
 .form-wrapper{
   margin: 0 auto;
@@ -140,6 +116,25 @@
   opacity: .8;
 } 
 
+.login-form__forgot-password{
+  display: block;
+  text-align: right;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: .05em;
+  font-size: 12px;
+  font-weight: 500;
+  color: #8dabfb;
+}
+
+.login-form__forgot-password:hover{
+  opacity: 0.5;
+  -webkit-transition: .3s linear;
+  -moz-transition: .3s linear;
+  -o-transition: .3s linear;
+  transition: .3s linear;
+}
+
 .buttons__signup--login-form{
   -webkit-transition: none;
   -moz-transition: none;
@@ -149,4 +144,14 @@
 }
 
 
+/* ===========================
+    Register Form
+============================ */
 
+.buttons__signup--sign-up-form{
+  top: 5px;  
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}

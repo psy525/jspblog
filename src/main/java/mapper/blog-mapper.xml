@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="blog.BlogMapper">
+	<resultMap type="board" id="boardMap">
+		<result column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="content" property="content"/>
+		<result column="writer" property="writer"/>
+		<result column="hits" property="hits"/>
+		<result column="register_date" property="registerDate"/>
+		<result column="modified_date" property="modifiedDate"/>
+		<collection column="id" property="fileList" select="selectFiles" javaType="list" ofType="file"/>
+		<collection column="id" property="commentList" select="comment.CommentMapper.selectComments" javaType="list" ofType="comment"/>
+	</resultMap>
+	<select id="selectBoards"  resultType="board">
+		SELECT
+			b.id,
+			b.user_id,
+			b.title,
+			b.content,
+			b.register_date,
+			b.modified_date,
+			u.grade
+		FROM
+			blog b
+		JOIN
+			blog_user u ON b.user_id=u.user_id
+		WHERE
+			delete_yn=0
+		
+	</select>
+	
+	<select id="selectBoard" parameterType="int" resultMap="boardMap">
+		SELECT
+			b.id,
+			b.user_id,
+			b.title,
+			b.content,
+			b.register_date,
+			b.modified_date,
+			u.grade
+		FROM
+			blog b
+		JOIN
+			blog_user u ON b.user_id=u.user_id
+		where
+			b.id=#{id}
+	</select>
+	<insert id="registerBoard"  parameterType="board"  useGeneratedKeys="true"  keyColumn="id" keyProperty="id">
+		insert into
+			blog
+			(user_id, title, content)
+		values
+			(#{userId}, #{title}, #{content})	
+	</insert>
+	<update id="modifyBoard" parameterType="board">
+		update
+			blog
+		set
+			user_id =#{userId},
+			title=#{title},
+			content=#{content},
+			modified_date=sysdate
+		where
+			id=#{id}
+	</update>
+	<update  id="removeBoard" parameterType="int">
+		update
+			blog
+		set
+			delete_yn=1
+		where
+			id=#{id}
+	</update>
+	<insert id="insertFile" parameterType="list">
+		INSERT INTO
+			BLOG_FILE
+			(BOARD_NO, FILE_PATH, FILE_NAME, ORIGINAL_NAME, FILE_SIZE)
+		<foreach collection="list" item="f" separator="union all">
+		SELECT
+			#{f.boardNo}, #{f.filePath}, #{f.fileName}, #{f.originalName}, #{f.fileSize}
+		FROM
+			DUAL
+		</foreach>	
+	</insert>
+	<select id="selectFiles" parameterType="int" resultType="file">
+		SELECT
+			id,
+			board_no,
+			file_path,
+			file_name,
+			original_name,
+			file_size,
+			register_date
+		FROM
+			blog_file
+		where
+			board_no=#{boardNo}
+	</select>
+	<select id="selectPostCount" resultType="int">
+		select count(*) from blog where user_id=#{userId}
+	</select>
+	<select id="selectCommentCount" resultType="int">
+		select count(*) from BLOG_COMMENT where writer=#{userId}
+	</select>
+	<update id="updateUserGrade">
+		UPDATE blog_user
+        SET grade = #{newGrade}
+        WHERE user_id = #{userId}
+	</update>
+</mapper>
+
+
+

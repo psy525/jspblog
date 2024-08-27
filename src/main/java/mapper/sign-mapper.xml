@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper의 namespace는 Mapper 인터페이스와 연동할 때 사용 -->
+<!-- resultType="패키지.밑에있는 무언가" -->
+<mapper namespace="sign.SignMapper">
+	<insert id="insertUser" parameterType="sign.SignDTO" useGeneratedKeys="true"  keyColumn="id" keyProperty="id">
+		insert into
+			BLOG_USER
+			(user_id, name,  email, password)
+		 values 
+		 	(#{userId},  #{userName}, #{email},  #{password})
+
+	
+	</insert>
+    <!-- ID 중복 체크 SQL -->
+    <select id="checkId" resultType="sign.SignDTO">
+        SELECT * FROM BLOG_USER WHERE user_id = #{userId}
+    </select>
+
+    <!-- 이메일 중복 체크 SQL -->
+    <select id="checkEmail" resultType="sign.SignDTO">
+        SELECT * FROM BLOG_USER WHERE email = #{email}
+    </select>
+
+</mapper>

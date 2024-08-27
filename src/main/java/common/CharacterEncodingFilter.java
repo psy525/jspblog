@@ -18,9 +18,7 @@ public class CharacterEncodingFilter implements Filter{
 		// 연결된 필터가 더이상 없으면 원래 요청을 처리하는 서블릿 실행
 		// 디자인 패턴: 프록시(대리자, 쁘락치) 패턴 - doFilter가 doGet doPost를 대신 실행해주는거
 		chain.doFilter(req, resp);
-	
-		System.out.println("서블릿 실행 후)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ");
-			
+		System.out.println("blog 서블릿 실행 후");
 		// 3. 서블릿 실행 후 코드 
 	}
 

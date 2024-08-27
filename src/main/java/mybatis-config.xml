@@ -7,11 +7,11 @@
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 	<typeAliases>
-		<typeAlias type="board.BoardDTO" alias="board"/>
-		<typeAlias type="file.FileDTO" alias="file"/>	
-		<typeAlias type="comment.CommentDTO" alias="comment"/>	
+		<typeAlias type="sign.SignDTO" alias="sign"/>
+		<typeAlias type="blog.BlogDTO" alias="board"/>
+		<typeAlias type="file.FileDTO" alias="file"/>
+		<typeAlias type="comment.CommentDTO" alias="comment"/>
 	</typeAliases>
-
   <environments default="development">
     <environment id="development">
       <transactionManager type="JDBC"/>
@@ -24,10 +24,11 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="/mappers/todo-mapper.xml"/>
-    <mapper resource="/mappers/board-mapper.xml"/>
-    <mapper resource="/mappers/login-mapper.xml"/>
-    <mapper resource="/mappers/file-mapper.xml"/>
-    <mapper resource="/mappers/comment-mapper.xml"/>
+    <mapper resource="/mapper/sign-mapper.xml"/>
+    <mapper resource="/mapper/login-mapper.xml"/>
+    <mapper resource="/mapper/blog-mapper.xml"/>
+    <mapper resource="/mapper/file-mapper.xml"/>
+    <mapper resource="/mapper/comment-mapper.xml"/>
+    <mapper resource="/mapper/comment-mapper.xml"/>
   </mappers>
 </configuration>
